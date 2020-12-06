@@ -3,7 +3,7 @@ import re
 parse_regex = re.compile("^(?P<rows>[BF]*)(?P<columns>[LR]*)")
 
 filename = '5/input.txt'
-highest_seat_number = 0
+taken_seats = set()
 
 def parse_input(line):
         (row, column) = parse_regex.search(line).groups()
@@ -49,7 +49,9 @@ if __name__ == "__main__":
         col = binary_search(binary_col)
         # print("--------\n")
         seat_number = calc_seat_number(row, col)
-        # print(seat.strip("\n") + ': row ' + str(row) + ', column ' + str(col) + ', seat Id ' + str(seat_number) + '.')
-        if seat_number > highest_seat_number:
-            highest_seat_number = seat_number
-    print(highest_seat_number)
+        taken_seats.add(seat_number)
+    for x in range(801):
+        if x not in taken_seats:
+            print(x)
+
+
